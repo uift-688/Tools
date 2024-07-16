@@ -152,8 +152,36 @@
     </div>
 
     <script>
-        
+        const switchElement = document.getElementById('switch');
+            if (switchElement) {
+                switchElement.addEventListener('click', function(event) {
+                    event.preventDefault(); // デフォルトのリンク動作をキャンセル
 
+                    // 現在のページの URL を取得
+                    const currentPage = window.location.href;
+                    let targetPage;
+
+                    // 切り替え先のページを設定
+                    if (currentPage.includes('home.html')) {
+                        targetPage = './home_dark.html'; // dark mode へ切り替える場合
+                    } else if (currentPage.includes('home_dark.html')) {
+                        targetPage = './home.html'; // light mode へ切り替える場合
+                    } else {
+                        return; // その他のページでは動作しない
+                    }
+
+                    // 現在のページのコンテナを取得
+                    const container = document.querySelector('.container');
+
+                    // 現在のページを徐々に透明から不透明に変化させる
+                    container.style.opacity = 0;
+
+                    // 一定時間後に新しいページに遷移する
+                    setTimeout(function() {
+                        window.location.href = targetPage;
+                    }, 500); // 0.5秒後に遷移する（必要に応じて調整）
+                });
+            }
             // ページが読み込まれた後にコンテナをフェードインさせる
             window.addEventListener('load', function() {
                 const container = document.querySelector('.container');
