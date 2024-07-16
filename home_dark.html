@@ -128,13 +128,13 @@
         <div class="section">
             <h2 class="section-title">主な機能</h2>
             <div class="button-container">
-                <button class="button" onclick='window.location.href = "https://34c4n16r-8080.asse.devtunnels.ms/Svg-Preview"'>
+                <button class="button" onclick='window.location.href = "./Svg-Preview"'>
                     Svgコードのプレビュー
                 </button>
-                <button class="button" onclick='window.location.href = "https://34c4n16r-8080.asse.devtunnels.ms/Fetch"'>
+                <button class="button" onclick='window.location.href = "./Fetch"'>
                     Fetchリクエスト
                 </button>
-                <button class="button" onclick='window.location.href = "https://34c4n16r-8080.asse.devtunnels.ms/html_Preview"'>
+                <button class="button" onclick='window.location.href = "./html_Preview"'>
                     HTMLプレビュー
                 </button>
             </div>
@@ -144,15 +144,7 @@
             <h2 class="section-title">開発者向けツール</h2>
             <div class="rounded-box">
                 <p>さまざまなテストやパネルへのアクセス</p>
-                <button class="button" onclick='window.location.href = "https://34c4n16r-8080.asse.devtunnels.ms/Error"'>
-                    ステータスコードのテスト
-                </button>
-                <button class="button" onclick='window.location.href = "https://34c4n16r-8080.asse.devtunnels.ms/empty"'>
-                    空のレスポンス(status-code: 444)
-                </button>
-                <button class="button" onclick='window.location.href = "https://34c4n16r-8080.asse.devtunnels.ms/login"'>
-                    開発者パネル(認証付き)
-                </button>
+                <p>github運営にため使用できません</p>
             </div>
         </div>
     </div>
@@ -169,10 +161,10 @@
                     let targetPage;
 
                     // 切り替え先のページを設定
-                    if (currentPage.includes('home.html')) {
+                    if (currentPage.includes('index.html')) {
                         targetPage = './home_dark.html'; // dark mode へ切り替える場合
                     } else if (currentPage.includes('home_dark.html')) {
-                        targetPage = './home.html'; // light mode へ切り替える場合
+                        targetPage = './index.html'; // light mode へ切り替える場合
                     } else {
                         return; // その他のページでは動作しない
                     }
