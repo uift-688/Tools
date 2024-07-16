@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVGプレビュー</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        #container {
+            width: 80%;
+            max-width: 800px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #inputContainer {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        #svgPreviewContainer {
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            overflow: auto;
+            max-height: 400px;
+        }
+        .svgItem {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            background-color: #e9ecef;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .svgCode {
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre-wrap;
+            word-break: break-word;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        #svgInput {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        #svgInput:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+        #submitButton {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        #submitButton:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="inputContainer">
+            <label for="svgInput">プレビューするSVGを入力:</label><br>
+            <input type="text" id="svgInput" placeholder="ここにSVGを入力">
+            <button id="submitButton" onclick="previewSVG()">プレビュー</button>
+        </div>
+        <div id="svgPreviewContainer">
+            <!-- SVGプレビューがここに追加される -->
+        </div>
+    </div>
+
+    <script>
+        function previewSVG() {
+            const svgInput = document.getElementById('svgInput').value;
+            if (svgInput.trim() !== "") {
+                const svgPreviewContainer = document.getElementById('svgPreviewContainer');
+                const svgItem = document.createElement('div');
+                svgItem.classList.add('svgItem');
+                svgItem.innerHTML = `
+                    <div style="font-weight: bold; margin-bottom: 5px;">SVG Preview:</div>
+                    <div class="svgCode">${svgInput}</div>
+                `;
+                svgPreviewContainer.insertBefore(svgItem, svgPreviewContainer.firstChild);
+                document.getElementById('svgInput').value = '';
+            } else {
+                alert('SVGを入力してください。');
+            }
+        }
+
+        // Enterキーでの処理を追加
+        document.getElementById('svgInput').addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                previewSVG();
+            }
+        });
+    </script>
+</body>
+</html>

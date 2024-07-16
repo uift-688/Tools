@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>SVG生成器(簡易/四角)</title>
+    <script>
+        function generateSVG(event) {
+            // フォームの送信を防止
+            event.preventDefault();
+
+            // 入力フィールドの値を取得
+            const fillcolor = document.getElementById('colorPicker').value;
+            const strokecolor = document.getElementById('colorPicker2').value;
+            const stroke_size = document.getElementById('stroke_size').value;
+            const sizeX = document.getElementById('sizeX').value;
+            const sizeY = document.getElementById('sizeY').value;
+            const rx = document.getElementById('rx').value;
+
+            // 入力が空でないことを確認
+            if (!sizeX || !sizeY) {
+                alert("すべてのフィールドに値を入力してください");
+                return;
+            }
+            if (!rx) {
+                rx = 0
+            }
+
+            // SVG要素を作成
+            const svgNS = "http://www.w3.org/2000/svg";
+            const svg = document.createElementNS(svgNS, "svg");
+            svg.setAttribute("width", sizeX);
+            svg.setAttribute("height", sizeY);
+            svg.setAttribute("viewBox", `0 0 ${sizeX} ${sizeY}`);
+
+            // 四角形要素を作成
+            const rect = document.createElementNS(svgNS, "rect");
+            rect.setAttribute("width", sizeX);
+            rect.setAttribute("height", sizeY);
+            rect.setAttribute("rx", rx);
+            rect.setAttribute("ry", rx);
+            rect.setAttribute("style", `fill:${fillcolor};stroke:${strokecolor};stroke-width:${stroke_size};`);
+
+            // 四角形をSVGに追加
+            svg.appendChild(rect);
+
+            // 既存のSVGをクリア
+            const svgContainer = document.getElementById('svgContainer');
+            svgContainer.innerHTML = "";
+
+            // SVGをコンテナに追加
+            svgContainer.appendChild(svg);
+        }
+    </script>
+    <style>
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .btn:active {
+            background-color: #004085;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        body {
+            background-color: rgb(129, 129, 129);
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #c7c7c7;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form onsubmit="generateSVG(event)">
+            <label for="sizeX">サイズX: </label>
+            <input type="number" id="sizeX" name="sizeX" style="
+                padding: 10px;
+                border: 2px solid #ccc;
+                border-radius: 4px;
+                box-shadow: inset 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+                transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+                font-size: 16px;
+            ">
+            <br>
+            <label for="sizeY">サイズY: </label>
+            <input type="number" id="sizeY" name="sizeY" style="
+                padding: 10px;
+                border: 2px solid #ccc;
+                border-radius: 4px;
+                box-shadow: inset 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+                transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+                font-size: 16px;
+            ">
+            <br>
+            <label for="rx">角丸 (オプション): </label>
+            <input type="number" id="rx" name="rx" style="
+                padding: 10px;
+                border: 2px solid #ccc;
+                border-radius: 4px;
+                box-shadow: inset 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+                transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+                font-size: 16px;
+            ">
+            <br>
+            <label for="rx">塗りつぶし: </label>
+            <input type="color" id="colorPicker">
+            <label for="rx">外線: </label>
+            <input type="color" id="colorPicker2">
+            <br>
+            <label for="rx">外線の太さ: </label>
+            <input type="number" id="stroke_size">
+            <br>
+            <button class="btn" type="submit">プレビュー</button>
+        </form>
+        <div id="svgContainer"></div>
+    </div>
+</body>
+</html>
