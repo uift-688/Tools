@@ -150,15 +150,7 @@
             <h2 class="section-title">開発者向けツール</h2>
             <div class="rounded-box">
                 <p>さまざまなテストやパネルへのアクセス</p>
-                <button class="button" onclick='window.location.href = "./Error"'>
-                    ステータスコードのテスト
-                </button>
-                <button class="button" onclick='window.location.href = "./empty"'>
-                    空のレスポンス(status-code: 444)
-                </button>
-                <button class="button" onclick='window.location.href = "./login"'>
-                    開発者パネル(認証付き)
-                </button>
+                <p>github運営のため、使用できません。</p>
             </div>
         </div>
     </div>
@@ -175,10 +167,10 @@
                     let targetPage;
 
                     // 切り替え先のページを設定
-                    if (currentPage.includes('home.html')) {
+                    if (currentPage.includes('index.html')) {
                         targetPage = './home_dark.html'; // dark mode へ切り替える場合
                     } else if (currentPage.includes('home_dark.html')) {
-                        targetPage = './home.html'; // light mode へ切り替える場合
+                        targetPage = './index.html'; // light mode へ切り替える場合
                     } else {
                         return; // その他のページでは動作しない
                     }
